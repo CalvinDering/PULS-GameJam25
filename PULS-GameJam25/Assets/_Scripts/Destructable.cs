@@ -5,13 +5,9 @@ public class Destructable : MonoBehaviour {
     [SerializeField] private float explosionForce = 500f;
     [SerializeField] private float explosionRadius = 5f;
 
-    private Collider mainCollider;
-
-    private void Awake() {
-        mainCollider = GetComponent<Collider>();
-    }
 
     private void OnCollisionEnter(Collision collision) {
+
         ContactPoint contact = collision.contacts[0];
         GameObject rocket = contact.otherCollider.gameObject;
         if(rocket.CompareTag("Rocket")) {
