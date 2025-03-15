@@ -4,8 +4,8 @@ public class AudioHandler : MonoBehaviour {
 
     public static AudioHandler Instance;
 
-    private AudioSource mainMenuMusic;
-    private AudioSource gameMusic;
+    [SerializeField] private AudioSource mainMenuMusic;
+    [SerializeField] private AudioSource gameMusic;
 
     private void Awake() {
         if(Instance != null && Instance != this) {
