@@ -4,13 +4,19 @@ public class Destructable : MonoBehaviour {
 
     [SerializeField] private GameObject destroyedGameObject;
     
-    private void OnTriggerEnter(Collider other) {
-        if(other.CompareTag("Rocket")) {
-            DestructionHandler.Instance.ObjectDestroyed(this);
-            DestructionHandler.Instance.SpawnExplosion(other.ClosestPoint(transform.position), transform.rotation, 20f);
-            Instantiate(destroyedGameObject, transform.position, transform.rotation);
-            Destroy(gameObject);
-            Destroy(other.transform.parent.gameObject);
+    private void OnCollisionEnter(Collision collision) {
+        ContactPoint contact = collision.contacts[0];
+        GameObject rocket = contact.otherCollider.gameObject;
+        if(rocket.CompareTag("Rocket")) {
+            Quaternion contactRotation = Quaternion.FromToRotation(Vector3.forward, contact.normal);
+            DestructionHandler.Instance.SpawnExplosion(contact.point, contactRotation, 20f);
+            Destroy(rocket.transform.parent.gameObject);
+
+            if(destroyedGameObject != null) {
+                DestructionHandler.Instance.ObjectDestroyed(this);
+                Instantiate(destroyedGameObject, transform.position, transform.rotation);
+                Destroy(gameObject);
+            }
         }
     }
         

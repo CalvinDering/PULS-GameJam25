@@ -8,8 +8,10 @@ public class Rocket : MonoBehaviour {
         rb = GetComponent<Rigidbody>();
     }
 
-    private void Update() {
-        transform.rotation = Quaternion.LookRotation(rb.velocity);
+    private void FixedUpdate() {
+        if(rb.velocity.sqrMagnitude > 0.01f) {
+            transform.rotation = Quaternion.LookRotation(rb.velocity);
+        }
     }
 
 }

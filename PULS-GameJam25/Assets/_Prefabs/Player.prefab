@@ -200,6 +200,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 25
+  horizontalrotationSpeed: 0.5
+  verticalRotationSpeed: 0.2
+  maxVerticalAngle: 75
 --- !u!1 &4888780041334011013
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,7 +417,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rocketPrefab: {fileID: 7180601663749899364, guid: a77df8a4b0783144e9ee8045c4c9506a, type: 3}
   rocketSpawnpoint: {fileID: 7202364918300054544}
-  bulletSpeed: 100
+  bulletSpeed: 50
 --- !u!1 &7054622400075175458
 GameObject:
   m_ObjectHideFlags: 0
