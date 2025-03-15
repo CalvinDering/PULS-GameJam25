@@ -60561,10 +60561,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5083521186190409806, guid: 410ebd7d6410d464098c173a353ffa11, type: 3}
-      propertyPath: bulletSpeed
-      value: 50
-      objectReference: {fileID: 0}
     - target: {fileID: 7054622400075175458, guid: 410ebd7d6410d464098c173a353ffa11, type: 3}
       propertyPath: m_Name
       value: Player
