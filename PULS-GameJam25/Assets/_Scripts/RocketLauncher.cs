@@ -9,8 +9,9 @@ public class RocketLauncher : MonoBehaviour {
 
     private void Update() {
         if(Input.GetMouseButtonDown(0)) {
-            GameObject rocket = Instantiate(rocketPrefab, rocketSpawnpoint.position, Quaternion.identity, transform);
-            rocket.GetComponentInChildren<Rigidbody>().AddForce(rocket.transform.forward * bulletSpeed);
+            GameObject rocket = Instantiate(rocketPrefab, rocketSpawnpoint.position, rocketSpawnpoint.rotation, transform);
+            Rigidbody rocketRigidbody = rocket.GetComponentInChildren<Rigidbody>();
+            rocketRigidbody.AddForce(rocket.transform.forward * bulletSpeed);
         }
     }
 
