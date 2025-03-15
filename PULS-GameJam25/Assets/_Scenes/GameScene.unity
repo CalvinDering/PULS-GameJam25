@@ -30893,11 +30893,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9539cc6ac63c41e448931874cada4ec2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPrefabs:
+  housePrefabs:
   - {fileID: 3915706032040485886, guid: 2cedcd5e09e2210479f52d2c037bfe71, type: 3}
+  roadPrefabs:
+  - {fileID: 2465323128737295639, guid: bbfc9a5238471dc42aaa49fd82024776, type: 3}
   width: 3
   height: 3
-  cellSize: 25
+  houseSize: 25
   roadOffset: 10
 --- !u!4 &1585999481
 Transform:
