@@ -9,6 +9,11 @@ public class DestructionHandler : MonoBehaviour {
 
     private int score = 0;
 
+    [SerializeField] private float roundTimer = 60f;
+    private float timer = 0f;
+
+    private bool paused = false;
+
     private void Awake() {
         if(Instance != null && Instance != this) {
             Destroy(gameObject);
@@ -16,10 +21,25 @@ public class DestructionHandler : MonoBehaviour {
         }
 
         Instance = this;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        paused = false;
     }
 
     private void Start() {
         score = 0;
+    }
+
+    private void Update() {
+        timer += Time.deltaTime;
+
+        if(timer >= roundTimer) {
+            Cursor.lockState = CursorLockMode.None;
+            paused = true;
+            UIHandler.Instance.ShowRestartMenu();
+        }
+
+        UIHandler.Instance.UpdateTimer(roundTimer - timer);
     }
 
     public void ObjectDestroyed(Destructable destructable) {
@@ -44,6 +64,10 @@ public class DestructionHandler : MonoBehaviour {
 
     public int GetScore() {
         return score;
+    }
+
+    public bool isPaused() {
+        return paused;
     }
 
 }

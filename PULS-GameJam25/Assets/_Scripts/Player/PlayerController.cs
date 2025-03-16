@@ -11,11 +11,11 @@ public class PlayerController : MonoBehaviour {
     private float horizontalRotation = 0f;
     private float verticalRotation = 0f;
 
-    private void Start() {
-        Cursor.lockState = CursorLockMode.Locked;
-    }
-
     private void FixedUpdate() {
+        if(DestructionHandler.Instance.isPaused()) {
+            return;
+        }
+
         Movement();
         Look();
     }

@@ -9,6 +9,10 @@ public class PlayerShoot : MonoBehaviour {
     [SerializeField] private float bulletSpeed = 10f;
 
     public void Shoot() {
+        if(DestructionHandler.Instance.isPaused()) {
+            return;
+        }
+
         GameObject rocket = Instantiate(rocketPrefab, rocketSpawnpoint.position, rocketSpawnpoint.rotation, DestructionHandler.Instance.transform);
         Rigidbody rocketRigidbody = rocket.GetComponentInChildren<Rigidbody>();
         rocketRigidbody.AddForce(rocket.transform.forward * bulletSpeed, ForceMode.Impulse);
