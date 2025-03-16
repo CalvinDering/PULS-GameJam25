@@ -3,19 +3,29 @@ using UnityEngine;
 public class HouseSpawner : MonoBehaviour {
 
     [SerializeField] private GameObject[] housePrefabs;
+    [SerializeField] private GameObject[] targetHousePrefabs;
+    [SerializeField] private GameObject[] targetPrefabs;
     [SerializeField] private GameObject[] roadPrefabs;
 
     [SerializeField] private int width = 10;
     [SerializeField] private int height = 10;
     [SerializeField] private int houseSize = 25;
     [SerializeField] private int roadOffset = 10;
+    [SerializeField] private float targetChance = 35;
+    [SerializeField] private int targetIndex = 0;
 
     private int cellsize;
 
     private void Awake() {
+
         cellsize = houseSize / 5;
 
-        int spawnIndex = Random.Range(0, housePrefabs.Length);
+        int houseSpawnIndex = Random.Range(0, housePrefabs.Length);
+        int targetHouseSpawnIndex = Random.Range(0, targetHousePrefabs.Length);
+        targetIndex = Random.Range(0, targetPrefabs.Length);
+
+        int totalHouses = width * height;
+
         for(int x = 0; x < width; x++) {
             for(int y = 0; y < height; y++) {
                 int rotationDir = Random.Range(0, 4);
@@ -24,7 +34,18 @@ public class HouseSpawner : MonoBehaviour {
                 float yRotationOffset = rotationDir == 1 || rotationDir == 2 ? houseSize : 0;
                 Vector3 spawnPosition = new Vector3(x * houseSize + xRotationOffset + x * roadOffset, 0, y * houseSize + yRotationOffset + y * roadOffset);
 
-                Instantiate(housePrefabs[spawnIndex], spawnPosition, spawnRotation, transform);
+
+                int spawnTargetRandom = Random.Range(0, totalHouses);
+
+                if(spawnTargetRandom <= targetChance / totalHouses) {
+
+                    bool shouldDestroy = Random.Range(0, 5) < 3; 
+                    GameObject target = Instantiate(targetHousePrefabs[targetHouseSpawnIndex], spawnPosition, spawnRotation, transform);
+                    target.GetComponent<TargetDestructable>().Setup(targetPrefabs[targetIndex], shouldDestroy);
+                } else {
+                    Instantiate(housePrefabs[houseSpawnIndex], spawnPosition, spawnRotation, transform);
+                }
+
 
                 SpawnRoadAfterHouse(x, y);
             }

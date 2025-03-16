@@ -5,7 +5,6 @@ public class Destructable : MonoBehaviour {
     [SerializeField] private float explosionForce = 500f;
     [SerializeField] private float explosionRadius = 5f;
 
-
     private void OnCollisionEnter(Collision collision) {
 
         ContactPoint contact = collision.contacts[0];
