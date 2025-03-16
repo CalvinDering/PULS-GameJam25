@@ -22,8 +22,16 @@ public class PlayerController : MonoBehaviour {
 
     private void Movement() {
         Vector3 direction = new Vector3(PlayerInputHandler.Instance.Movement.x, 0, PlayerInputHandler.Instance.Movement.y);
-        Vector3 moveDirection = transform.parent.TransformDirection(direction);
-        moveDirection.y = 0;
+
+        Vector3 forward = transform.parent.forward;
+        Vector3 right = transform.parent.right;
+        forward.y = 0;
+        right.y = 0;
+
+        forward.Normalize();
+        right.Normalize();
+
+        Vector3 moveDirection = (forward * direction.z + right * direction.x).normalized;
 
         transform.parent.position += moveDirection * movementSpeed * Time.fixedDeltaTime;
     }
