@@ -2422,6 +2422,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4379726253693194, guid: a58dc0295bbcc6746b1971f6a3c0cc4c, type: 3}
   m_PrefabInstance: {fileID: 1208886768}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1252477540 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7054622400075175458, guid: 410ebd7d6410d464098c173a353ffa11, type: 3}
+  m_PrefabInstance: {fileID: 3056128981730838016}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1255076767
 GameObject:
   m_ObjectHideFlags: 0
@@ -3138,12 +3143,13 @@ MonoBehaviour:
   - {fileID: 1325631508808821862, guid: f511ebf8fdc31ef4788c0fa10e24022b, type: 3}
   - {fileID: 1610787410585685863, guid: 956c23421e4edaa419a797347a13e01a, type: 3}
   - {fileID: 7229817817352984714, guid: 1e0d31949a6ff624d889e0a9bcbce3a2, type: 3}
-  width: 10
-  height: 10
+  width: 2
+  height: 2
   houseSize: 25
   roadOffset: 10
   targetChance: 35
   targetIndex: 0
+  player: {fileID: 1252477540}
 --- !u!4 &1585999481
 Transform:
   m_ObjectHideFlags: 0

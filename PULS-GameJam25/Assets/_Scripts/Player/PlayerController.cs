@@ -11,6 +11,16 @@ public class PlayerController : MonoBehaviour {
     private float horizontalRotation = 0f;
     private float verticalRotation = 0f;
 
+    private float minXBound = 0f;
+    private float maxXBound;
+    private float minZBound = 0f;
+    private float maxZBound;
+
+    private void Start() {
+        maxXBound = HouseSpawner.Instance.GetWidth();
+        maxZBound = HouseSpawner.Instance.GetHeight();
+    }
+
     private void FixedUpdate() {
         if(DestructionHandler.Instance.isPaused()) {
             return;
@@ -34,6 +44,12 @@ public class PlayerController : MonoBehaviour {
         Vector3 moveDirection = (forward * direction.z + right * direction.x).normalized;
 
         transform.parent.position += moveDirection * movementSpeed * Time.fixedDeltaTime;
+
+        float clampedX = Mathf.Clamp(transform.parent.position.x, minXBound, maxXBound);
+        float clampedZ = Mathf.Clamp(transform.parent.position.z, minZBound, maxZBound);
+
+        transform.parent.position = new Vector3(clampedX, transform.parent.position.y, clampedZ);
+
     }
 
     private void Look() {

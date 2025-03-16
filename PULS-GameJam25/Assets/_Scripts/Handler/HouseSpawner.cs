@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class HouseSpawner : MonoBehaviour {
 
+    public static HouseSpawner Instance;
+
     [SerializeField] private GameObject[] housePrefabs;
     [SerializeField] private GameObject[] targetHousePrefabs;
     [SerializeField] private GameObject[] targetPrefabs;
@@ -16,9 +18,18 @@ public class HouseSpawner : MonoBehaviour {
     [SerializeField] private float targetChance = 35;
     [SerializeField] private int targetIndex = 0;
 
+    [SerializeField] private GameObject player;
+
     private int cellsize;
 
     private void Awake() {
+
+        if(Instance != null && Instance != this) {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
 
         cellsize = houseSize / 5;
 
@@ -59,6 +70,8 @@ public class HouseSpawner : MonoBehaviour {
 
         UIHandler.Instance.SetTarget(targetNames[targetIndex], targetShadowNames[targetIndex]);
         UIHandler.Instance.InitScore(totalTargets);
+
+        player.transform.position = new Vector3(GetWidth() / 2, player.transform.position.y, GetHeight() / 2);
     }
 
     private void SpawnRoadAfterHouse(int x, int y) {
@@ -88,5 +101,13 @@ public class HouseSpawner : MonoBehaviour {
     private void SpawnRoad(Vector3 spawnPosition) {
         int randomSpawnIndex = Random.Range(0, roadPrefabs.Length);
         Instantiate(roadPrefabs[randomSpawnIndex], spawnPosition, Quaternion.identity, transform);
+    }
+
+    public int GetWidth() {
+        return width * houseSize + (width - 1) * roadOffset;
+    }
+
+    public int GetHeight() {
+        return height * houseSize + (height - 1) * roadOffset;
     }
 }
