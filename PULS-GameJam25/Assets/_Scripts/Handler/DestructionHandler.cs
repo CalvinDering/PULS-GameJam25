@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class DestructionHandler : MonoBehaviour {
@@ -6,6 +7,8 @@ public class DestructionHandler : MonoBehaviour {
     public static DestructionHandler Instance;
 
     [SerializeField] private GameObject explosionPrefab;
+    [SerializeField] private AudioSource positiveAudio;
+    [SerializeField] private AudioSource negativeAudio;
 
     private int score = 0;
 
@@ -48,14 +51,19 @@ public class DestructionHandler : MonoBehaviour {
         if(destructable is TargetDestructable target) {
             if(target.ShouldDestroyTarget()) {
                 score++;
+                StartCoroutine(PlaySound(positiveAudio));
             } else {
                 score--;
+                StartCoroutine(PlaySound(negativeAudio));
             }
-        } else {
-            score--;
         }
 
         UIHandler.Instance.UpdateScore();
+    }
+
+    private IEnumerator PlaySound(AudioSource audioSource) {
+        yield return new WaitForSeconds(1f);
+        audioSource.Play();
     }
 
     public void SpawnExplosion(Vector3 position, Quaternion rotation, float particleDuration) {

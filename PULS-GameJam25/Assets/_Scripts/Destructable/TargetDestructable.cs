@@ -7,7 +7,9 @@ public class TargetDestructable : Destructable {
     [SerializeField] private Transform spawnPoint;
 
     public void Setup(GameObject target, bool shouldDestroy) {
-        Instantiate(target, spawnPoint.position, spawnPoint.rotation, spawnPoint);
+        if(shouldDestroy) {
+            Instantiate(target, spawnPoint.position, spawnPoint.rotation, spawnPoint);
+        }
         this.shouldDestroy = shouldDestroy;
     }
 
