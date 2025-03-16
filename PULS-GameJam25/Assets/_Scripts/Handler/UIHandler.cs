@@ -7,6 +7,7 @@ public class UIHandler : MonoBehaviour {
     public static UIHandler Instance;
 
     [SerializeField] private TextMeshProUGUI scoreText, scoreShadowText;
+    [SerializeField] private TextMeshProUGUI totalScoreText, totalScoreShadowText;
     [SerializeField] private TextMeshProUGUI targetText, targetShadowText;
     [SerializeField] private TextMeshProUGUI timeLeftText, timeLeftShadowText;
     [SerializeField] private GameObject restartMenu;
@@ -16,7 +17,6 @@ public class UIHandler : MonoBehaviour {
     [SerializeField] private GameObject mainMenu;
 
     private int totalScore = 0;
-
 
     private void Awake() {
         if(Instance != null && Instance != this) {
@@ -41,11 +41,15 @@ public class UIHandler : MonoBehaviour {
 
     public void InitScore(int totalScore) {
         this.totalScore = totalScore;
+
+        totalScoreText.text = $"Total targets: { totalScore }";
+        totalScoreShadowText.text = $"Total targets: { totalScore }";
     }
 
     public void UpdateScore() {
         scoreText.text = $"Score: { DestructionHandler.Instance.GetScore() }";
         scoreShadowText.text = $"Score: { DestructionHandler.Instance.GetScore() }";
+
     }
 
     public void UpdateTimer(float timeLeft) {
