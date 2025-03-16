@@ -41,7 +41,7 @@ public class HouseSpawner : MonoBehaviour {
 
                 if(spawnTargetRandom <= targetChance / totalHouses) {
 
-                    bool shouldDestroy = Random.Range(0, 5) < 3; 
+                    bool shouldDestroy = true; 
                     GameObject target = Instantiate(targetHousePrefabs[targetHouseSpawnIndex], spawnPosition, spawnRotation, transform);
                     target.GetComponent<TargetDestructable>().Setup(targetPrefabs[targetIndex], shouldDestroy);
                 } else {

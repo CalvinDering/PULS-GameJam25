@@ -5,7 +5,7 @@ public class Destructable : MonoBehaviour {
     [SerializeField] private float explosionForce = 500f;
     [SerializeField] private float explosionRadius = 5f;
 
-    private void OnCollisionEnter(Collision collision) {
+    protected void OnCollisionEnter(Collision collision) {
 
         ContactPoint contact = collision.contacts[0];
         GameObject rocket = contact.otherCollider.gameObject;
@@ -14,7 +14,10 @@ public class Destructable : MonoBehaviour {
             DestructionHandler.Instance.SpawnExplosion(contact.point, contactRotation, 20f);
             Destroy(rocket.transform.parent.gameObject);
 
+             DestructionHandler.Instance.ObjectDestroyed(this);
+
             HandleDestruction();
+
         }
     }
 

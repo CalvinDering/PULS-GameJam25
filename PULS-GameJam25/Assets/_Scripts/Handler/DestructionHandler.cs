@@ -29,6 +29,8 @@ public class DestructionHandler : MonoBehaviour {
             } else {
                 score--;
             }
+        } else {
+            score--;
         }
     }
 
