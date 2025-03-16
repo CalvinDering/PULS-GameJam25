@@ -61,7 +61,13 @@ public class DestructionHandler : MonoBehaviour {
     public void SpawnExplosion(Vector3 position, Quaternion rotation, float particleDuration) {
 
         GameObject explosion = Instantiate(explosionPrefab, position, rotation);
-        Destroy(explosion, particleDuration);
+        AudioSource explosionAudio = explosion.GetComponent<AudioSource>();
+        explosionAudio.clip = SoundFXPlayer.Instance.GetRandomSound();
+        explosionAudio.Play();
+
+        float longerTime = explosionAudio.clip.length > particleDuration ? explosionAudio.clip.length : particleDuration;
+
+        Destroy(explosion, longerTime);
     }
 
     public int GetScore() {

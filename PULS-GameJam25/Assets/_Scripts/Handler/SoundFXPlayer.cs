@@ -19,9 +19,25 @@ public class SoundFXPlayer : MonoBehaviour {
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        audioSource = GetComponent<AudioSource>();
     }
 
-    public float PlayRandomSound(bool randomPitch = false, bool stereoPan = true) {
+    public AudioClip GetRandomSound(bool randomPitch = true, bool stereoPan = true) {
+        AudioClip clip = audioClips[Random.Range(0, audioClips.Length)];
+        if(randomPitch) {
+            audioSource.pitch = Random.Range(minPitch, maxPitch);
+        }
+
+        if(stereoPan) {
+            Vector3 viewPortPosition = Camera.main.ViewportToWorldPoint(transform.position);
+            audioSource.panStereo = viewPortPosition.x;
+        }
+
+        return clip;
+    }
+
+    public float PlayRandomSound(bool randomPitch = true, bool stereoPan = true) {
         audioSource.clip = audioClips[Random.Range(0, audioClips.Length)];
         if(randomPitch) {
             audioSource.pitch = Random.Range(minPitch, maxPitch);
