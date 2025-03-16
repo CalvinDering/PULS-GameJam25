@@ -27,6 +27,7 @@ public class HouseSpawner : MonoBehaviour {
         targetIndex = Random.Range(0, targetPrefabs.Length);
 
         int totalHouses = width * height;
+        int totalTargets = 0;
 
         for(int x = 0; x < width; x++) {
             for(int y = 0; y < height; y++) {
@@ -44,6 +45,7 @@ public class HouseSpawner : MonoBehaviour {
                     bool shouldDestroy = true; 
                     GameObject target = Instantiate(targetHousePrefabs[targetHouseSpawnIndex], spawnPosition, spawnRotation, transform);
                     target.GetComponent<TargetDestructable>().Setup(targetPrefabs[targetIndex], shouldDestroy);
+                    totalTargets++;
                 } else {
                     Instantiate(housePrefabs[houseSpawnIndex], spawnPosition, spawnRotation, transform);
                 }
@@ -56,6 +58,7 @@ public class HouseSpawner : MonoBehaviour {
         }
 
         UIHandler.Instance.SetTarget(targetNames[targetIndex], targetShadowNames[targetIndex]);
+        UIHandler.Instance.InitScore(totalTargets);
     }
 
     private void SpawnRoadAfterHouse(int x, int y) {

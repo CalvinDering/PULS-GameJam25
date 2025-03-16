@@ -8,6 +8,8 @@ public class UIHandler : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI scoreText, scoreShadowText;
     [SerializeField] private TextMeshProUGUI targetText, targetShadowText;
 
+    private int totalScore = 0;
+
     private void Awake() {
         if(Instance != null && Instance != this) {
             Destroy(gameObject);
@@ -15,6 +17,11 @@ public class UIHandler : MonoBehaviour {
         }
 
         Instance = this;
+    }
+
+    private void Start() {
+
+        UpdateScore();
     }
 
     public void StartGame() {
@@ -25,11 +32,13 @@ public class UIHandler : MonoBehaviour {
         SceneHandler.Instance.LoadMainMenuScene();
     }
 
-    public void ShowScore(bool shouldShow = true) {
+    public void InitScore(int totalScore) {
+        this.totalScore = totalScore;
+    }
+
+    public void UpdateScore() {
         scoreText.text = $"Score: { DestructionHandler.Instance.GetScore() }";
         scoreShadowText.text = $"Score: { DestructionHandler.Instance.GetScore() }";
-        scoreText.enabled = shouldShow;
-        scoreShadowText.enabled = shouldShow;
     }
 
     public void SetTarget(string target, string targetShadow) {

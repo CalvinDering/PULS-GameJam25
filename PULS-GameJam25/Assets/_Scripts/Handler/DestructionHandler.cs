@@ -32,6 +32,8 @@ public class DestructionHandler : MonoBehaviour {
         } else {
             score--;
         }
+
+        UIHandler.Instance.UpdateScore();
     }
 
     public void SpawnExplosion(Vector3 position, Quaternion rotation, float particleDuration) {
