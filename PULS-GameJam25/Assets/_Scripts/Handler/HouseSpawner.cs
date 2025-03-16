@@ -5,6 +5,8 @@ public class HouseSpawner : MonoBehaviour {
     [SerializeField] private GameObject[] housePrefabs;
     [SerializeField] private GameObject[] targetHousePrefabs;
     [SerializeField] private GameObject[] targetPrefabs;
+    [SerializeField] private string[] targetNames;
+    [SerializeField] private string[] targetShadowNames;
     [SerializeField] private GameObject[] roadPrefabs;
 
     [SerializeField] private int width = 10;
@@ -52,6 +54,8 @@ public class HouseSpawner : MonoBehaviour {
 
             SpawnRoadRow(x);
         }
+
+        UIHandler.Instance.SetTarget(targetNames[targetIndex], targetShadowNames[targetIndex]);
     }
 
     private void SpawnRoadAfterHouse(int x, int y) {

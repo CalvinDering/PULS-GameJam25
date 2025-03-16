@@ -38,4 +38,8 @@ public class DestructionHandler : MonoBehaviour {
         Destroy(explosion, particleDuration);
     }
 
+    public int GetScore() {
+        return score;
+    }
+
 }
