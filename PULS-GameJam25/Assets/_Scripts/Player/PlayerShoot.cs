@@ -33,6 +33,10 @@ public class PlayerShoot : MonoBehaviour {
             return;
         }
 
+        if(rocketSpawnpoint == null) {
+            Debug.Log("no spawn");
+        }
+
         GameObject rocket = Instantiate(rocketPrefab, rocketSpawnpoint.position, rocketSpawnpoint.rotation, DestructionHandler.Instance.transform);
         Rigidbody rocketRigidbody = rocket.GetComponentInChildren<Rigidbody>();
         rocketRigidbody.AddForce(rocket.transform.forward * bulletSpeed, ForceMode.Impulse);

@@ -10,6 +10,10 @@ public class UIHandler : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI targetText, targetShadowText;
     [SerializeField] private TextMeshProUGUI timeLeftText, timeLeftShadowText;
     [SerializeField] private GameObject restartMenu;
+    [SerializeField] private GameObject loreMenu;
+    [SerializeField] private GameObject controlsMenu;
+    [SerializeField] private GameObject creditsMenu;
+    [SerializeField] private GameObject mainMenu;
 
     private int totalScore = 0;
 
@@ -61,5 +65,28 @@ public class UIHandler : MonoBehaviour {
     public void SetTarget(string target, string targetShadow) {
         targetText.text = $"{ target }";
         targetShadowText.text = $"{ targetShadow }";
+    }
+
+    public void ShowMainButtons() {
+        loreMenu.SetActive(false);
+        controlsMenu.SetActive(false);
+        creditsMenu.SetActive(false);
+
+        mainMenu.SetActive(true);
+    }
+
+    public void ShowCredits() {
+        mainMenu.SetActive(false);
+        creditsMenu.SetActive(true);
+    }
+
+    public void ShowControls() {
+        mainMenu.SetActive(false);
+        controlsMenu.SetActive(true);
+    }
+
+    public void ShowLore() {
+        mainMenu.SetActive(false);
+        loreMenu.SetActive(true);
     }
 }

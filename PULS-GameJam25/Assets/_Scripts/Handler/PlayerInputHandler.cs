@@ -43,12 +43,17 @@ public class PlayerInputHandler : MonoBehaviour {
         lookInput = playerActions.FindAction("Look");
         shootInput = playerActions.FindAction("Shoot");
 
-        shootInput.performed += context => playerShoot.Shoot();
+        shootInput.performed += ShootPerformed;
         playerActions.Enable();
     }
 
     private void OnDisable() {
+        shootInput.performed -= ShootPerformed;
         playerActions.Disable();
+    }
+
+    private void ShootPerformed(InputAction.CallbackContext context) {
+        playerShoot.Shoot();
     }
 
 }
