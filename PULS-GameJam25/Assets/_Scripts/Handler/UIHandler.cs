@@ -23,12 +23,6 @@ public class UIHandler : MonoBehaviour {
         Instance = this;
     }
 
-    private void Start() {
-
-        UpdateScore();
-        ShowRestartMenu(false);
-    }
-
     public void StartGame() {
         SceneHandler.Instance.LoadGameScene();
     }

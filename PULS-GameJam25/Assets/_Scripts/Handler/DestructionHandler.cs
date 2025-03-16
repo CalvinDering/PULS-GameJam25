@@ -28,6 +28,8 @@ public class DestructionHandler : MonoBehaviour {
 
     private void Start() {
         score = 0;
+        UIHandler.Instance.UpdateScore();
+        UIHandler.Instance.ShowRestartMenu(false);
     }
 
     private void Update() {

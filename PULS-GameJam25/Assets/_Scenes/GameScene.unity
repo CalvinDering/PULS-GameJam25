@@ -2934,8 +2934,8 @@ MonoBehaviour:
   - {fileID: 1325631508808821862, guid: f511ebf8fdc31ef4788c0fa10e24022b, type: 3}
   - {fileID: 1610787410585685863, guid: 956c23421e4edaa419a797347a13e01a, type: 3}
   - {fileID: 7229817817352984714, guid: 1e0d31949a6ff624d889e0a9bcbce3a2, type: 3}
-  width: 3
-  height: 3
+  width: 10
+  height: 10
   houseSize: 25
   roadOffset: 10
   targetChance: 35
