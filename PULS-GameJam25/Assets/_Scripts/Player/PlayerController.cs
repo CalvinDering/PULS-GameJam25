@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour {
     private float verticalRotation = 0f;
 
     private void Start() {
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void FixedUpdate() {
