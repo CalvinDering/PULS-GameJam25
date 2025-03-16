@@ -245,8 +245,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcacd03f42e14554588d12b56faea35d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionForce: 100
-  explosionRadius: 50
+  explosionForce: 500
+  explosionRadius: 5
 --- !u!65 &2568019481403373284
 BoxCollider:
   m_ObjectHideFlags: 0
