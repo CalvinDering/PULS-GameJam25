@@ -503,7 +503,7 @@ MonoBehaviour:
   explosionPrefab: {fileID: 1470360381520067470, guid: c003a55eefd4df943bee39e99f75fa91, type: 3}
   positiveAudio: {fileID: 103767397}
   negativeAudio: {fileID: 103767398}
-  roundTimer: 60
+  roundTimer: 600
 --- !u!4 &103767396
 Transform:
   m_ObjectHideFlags: 0

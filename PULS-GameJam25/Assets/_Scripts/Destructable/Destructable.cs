@@ -5,6 +5,8 @@ public class Destructable : MonoBehaviour {
     [SerializeField] private float explosionForce = 500f;
     [SerializeField] private float explosionRadius = 5f;
 
+    private bool isPaused = false;
+
     protected void OnCollisionEnter(Collision collision) {
 
         ContactPoint contact = collision.contacts[0];
@@ -40,6 +42,27 @@ public class Destructable : MonoBehaviour {
         foreach(Collider col in collider) {
             col.enabled = false;
         }
+    }
+
+    public void Pause() {
+        if(isPaused) {
+            return;
+        }
+
+        foreach(Transform child in transform.GetComponentsInChildren<Transform>()) {
+            if(child == transform) {
+                continue;
+            }
+
+            Rigidbody childRb = child.GetComponent<Rigidbody>();
+            if(childRb == null) {
+                continue;
+            }
+
+            childRb.isKinematic = true;
+            isPaused = true;
+        }
+
     }
         
 }
